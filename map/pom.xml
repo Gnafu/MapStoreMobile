@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>it.geosolutions.android.map</groupId>
+  <artifactId>MapActivity</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>apklib</packaging>
+
+  <name>MapActivity</name>
+
+  <dependencies>
+	<!--dependency>
+	  <groupId>android.support</groupId>
+	  <artifactId>compatibility-v4</artifactId>
+	  <version>19.1.0</version>
+	</dependency-->
+	<dependency>
+        <groupId>android</groupId>
+        <artifactId>android</artifactId>
+        <version>4.0_r3</version>
+        <scope>provided</scope>
+    </dependency>
+	<!--dependency>
+	  <groupId>com.actionbarsherlock</groupId>
+	  <artifactId>actionbarsherlock</artifactId>
+	  <version>4.4.0</version>
+	  <type>apklib</type>
+	</dependency-->
+    <dependency>
+      <groupId>it.geosolutions.android.mapstoremobile</groupId>
+      <artifactId>AmbilWarna</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <type>apklib</type>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.android.mapstoremobile</groupId>
+      <artifactId>GeopaparazziLibrary</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <type>apklib</type>
+    </dependency>
+    <dependency>
+      <groupId>it.geosolutions.android.mapstoremobile</groupId>
+      <artifactId>GeopaparazziSpatialiteLibrary</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <type>apklib</type>
+    </dependency>
+	<dependency>
+		<groupId>org.mapsforge</groupId>
+		<artifactId>mapsforge-core</artifactId>
+		<version>0.3.1-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+		<groupId>org.mapsforge</groupId>
+		<artifactId>mapsforge-map</artifactId>
+		<version>0.3.1-SNAPSHOT</version>
+	</dependency>
+	<dependency>
+		<groupId>com.google.code.gson</groupId>
+		<artifactId>gson</artifactId>
+		<version>2.2.4</version>
+	</dependency>
+	<dependency>
+	  <groupId>com.google.android.annotations</groupId>
+	  <artifactId>annotations</artifactId>
+	  <version>22.6.2</version>
+	  <scope>provided</scope>
+	</dependency>
+  </dependencies>
+
+  <build>
+  	<sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+        <artifactId>android-maven-plugin</artifactId>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
