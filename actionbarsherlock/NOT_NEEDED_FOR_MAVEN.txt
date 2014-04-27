@@ -1,0 +1,1 @@
+ActionBarSherlock folder is here only for Eclipse dependecy.
