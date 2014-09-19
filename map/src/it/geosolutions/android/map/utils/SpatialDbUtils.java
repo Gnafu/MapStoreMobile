@@ -231,35 +231,41 @@ public static MSMMap mapFromDb(){
 				l.setSource(s);
 				m.layers.add(l);
 			}
-		
-			// Get Raster Layers
-			List<SpatialRasterTable> rasterTables =  h.getSpatialRasterTables(true);
-			MbTilesSource mbs = null;
-			//inspect and create the source
-			if(tables.size()>0){
-				ISpatialDatabaseHandler dsm = SpatialDataSourceManager.getInstance().getSpatialDataSourceHandler(rasterTables.get(0));
-				if(dsm != null){
-					mbs = new MbTilesSource(dsm);
-					Log.v("SpatialiteDBload","Created source from datasource"+mbs.getTitle());
+			
+			try {
+				
+				// Get Raster Layers
+				List<SpatialRasterTable> rasterTables =  h.getSpatialRasterTables(true);
+				MbTilesSource mbs = null;
+				//inspect and create the source
+				if(tables.size()>0){
+					ISpatialDatabaseHandler dsm = SpatialDataSourceManager.getInstance().getSpatialDataSourceHandler(rasterTables.get(0));
+					if(dsm != null){
+						mbs = new MbTilesSource(dsm);
+						Log.v("SpatialiteDBload","Created source from datasource"+mbs.getTitle());
+					}else{
+						mbs = new MbTilesSource(h);
+					}
 				}else{
 					mbs = new MbTilesSource(h);
 				}
-			}else{
-				mbs = new MbTilesSource(h);
-		}
-			
-			//add the source to the layers that has the same handler source
-			for (SpatialRasterTable t : rasterTables) {
-				MbTilesLayer l = new MbTilesLayer(t);
-				l.setSource(mbs);
-				m.layers.add(l);
+				
+				//add the source to the layers that has the same handler source
+				for (SpatialRasterTable t : rasterTables) {
+					MbTilesLayer l = new MbTilesLayer(t);
+					l.setSource(mbs);
+					m.layers.add(l);
+				}
+				
+			}catch (Exception e) {
+				Log.e("Spatialite", "error retrieving spatial raster tables", e);
 			}
 		
 		}
 
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
-		Log.e("Spatialite","error retrieving spatial vector tables");
+		Log.e("Spatialite","error retrieving spatial tables", e);
 		return m;
 	}
 	return m;
