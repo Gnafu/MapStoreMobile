@@ -86,6 +86,7 @@
 					<assetsDirectory>${project.basedir}/assets</assetsDirectory>
 					<resourceDirectory>${project.basedir}/res</resourceDirectory>
 					<genDirectory>${project.basedir}/gen</genDirectory>
+					<failOnNonStandardStructure>false</failOnNonStandardStructure>
 					<deleteConflictingFiles>true</deleteConflictingFiles>
 					<undeployBeforeDeploy>true</undeployBeforeDeploy>
 					<sdk>
