@@ -33,6 +33,7 @@ import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -112,7 +113,7 @@ public class PersistenceUtils {
 
 			Log.d(TAG, "Loaded template ID: "+t.id);
 		}else{
-			Log.w(TAG, "MissionTemplate could not be found, edits will not be saved");
+			Log.w(TAG, "MissionTemplate is not valid, skipping...");
 			success = false;
 		}
 		return success;
@@ -1199,7 +1200,12 @@ public class PersistenceUtils {
 
 		try {
 			if(templates != null && templates.size() > 0){
-
+			    if(BuildConfig.DEBUG){
+	                int i = 0;
+	                for(MissionTemplate mt : templates){
+	                    Log.d(TAG, "SaveTemplates - Mission "+i+++" :"+(mt.id!=null?mt.id:"NULL") + "  **");
+	                }
+	            }
 				FileOutputStream fo = context.openFileOutput(DOWNLOADED_TEMPLATES, Context.MODE_PRIVATE);
 				ObjectOutputStream out = new ObjectOutputStream(fo);
 				out.writeObject(templates);
@@ -1221,7 +1227,15 @@ public class PersistenceUtils {
 			ObjectInputStream in = new ObjectInputStream(fi);
 			@SuppressWarnings("unchecked")
 			ArrayList<MissionTemplate> templates = (ArrayList<MissionTemplate>) in.readObject();
-			Log.d(TAG, "Saved Templates load succeeded");
+			Collections.sort(templates, new MissionUtils.MissionTemplateComparator());
+			
+			if(BuildConfig.DEBUG){
+			    int i = 0;
+    			for(MissionTemplate mt : templates){
+    			    Log.d(TAG, "LoadTemplates - Mission "+i+++" :"+(mt.id!=null?mt.id:"NULL"));
+    			}
+    			Log.d(TAG, "Templates load succeeded");
+			}
 			in.close();
 			fi.close();
 
